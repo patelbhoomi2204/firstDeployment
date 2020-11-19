@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Welcome {{ loggedInUser.first_name }}!</h1>
+    <a class="header_nav" href="/logout">Log out</a><br><br>
+  </header>
+  <main>
+    <h2>Your Trip Schedules</h2>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+        <th>Action</th>
+      </tr>
+      {% for trip in favoritedTrips %}
+      <tr>
+        <td><a href="/view/{{trip.id}}">{{trip.destination}}</a></td>
+        <td>{{trip.travel_startdate}}</td>
+        <td>{{trip.travel_enddate}}</td>
+        <td>{{trip.description}}</td>
+        <td>
+          {% if loggedInUser.first_name == trip.creator.first_name %}
+            <a href="/deleteJoined/{{trip.id}}">Delete | </a>
+            <a href="/removeJoined/{{trip.id}}">Cancel</a>
+          {% else %}
+            <a href="/removeJoined/{{trip.id}}">Cancel</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table><br><br>
+    <h2>Other Users' Travel Plans</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Do you want to Join?</th>
+      </tr>
+      {% for tripObj in nonfavoritedTrips %}
+      <tr>
+        <td><a href="/view/{{tripObj.id}}">{{tripObj.destination}}</a></td>
+        <td>{{tripObj.travel_startdate}}</td>
+        <td>{{tripObj.travel_enddate}}</td>
+        <td><a href="/addToJoined/{{tripObj.id}}">Join</a></td>
+      </tr>
+      {% endfor %}
+    </table><br><br>
+    <a class="addTrip" href="/addtrip">Add a Trip</a>
+  </main>
+</body>
+</html>

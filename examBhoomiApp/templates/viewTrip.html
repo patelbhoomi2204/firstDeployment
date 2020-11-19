@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header_nav">
+      <a class="header_button" href="/travels">Back</a>
+      <a class="header_button" href="/logout">Logout</a>
+    </div>
+  </header>
+  <main>
+    <h1> {{Trip.destination}}</h1>
+    <h4>Planned By: {{Trip.creator.first_name}} {{Trip.creator.last_name}}</h4>
+    <p>Description: {{Trip.description}}</p>
+    <p>Travel Date From: {{Trip.travel_startdate}}</p>
+    <p>Travel Date To: {{Trip.travel_enddate}}</p>
+    <h3>Other Users Joining the Trip:</h3>
+    {% for user in Trip.joiner.all %}
+      {% if user.first_name != Trip.creator.first_name %}
+        <p>{{user.first_name}} {{user.last_name}}</p>
+      {% endif %}
+    {% endfor %}
+  </main>
+</body>
+</html>

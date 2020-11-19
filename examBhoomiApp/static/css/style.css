@@ -1,0 +1,52 @@
+body {
+  width: 800px;
+  margin: 40px auto;
+  font-family: sans-serif;
+}
+header {
+  display: flex;
+  position: relative;
+}
+.header_button {
+  padding: 0 10px;
+}
+.header_nav {
+  position: absolute;
+  right: 0;
+  top: 30px;
+}
+.content {
+  display: flex;
+}
+
+.login {
+  margin-left: 100px;
+}
+
+.error {
+  color: red;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.addTrip {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}

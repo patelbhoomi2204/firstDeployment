@@ -1,0 +1,13 @@
+Trip.objects.create(destination = 'Paris, France', description = 'Cheese Tour', travel_startdate='2019-10-15', travel_enddate = '2019-10-25', creator = User.objects.get(id=1))
+
+Trip.objects.create(destination = 'Black Rock, Nevada', description = 'Burning Man', travel_startdate='2019-08-27', travel_enddate = '2019-09-04', creator = User.objects.get(id=3))
+
+Trip.objects.create(destination = 'Bali, Indonesia', description = 'Go to the Beach', travel_startdate='2019-05-01', travel_enddate = '2019-05-12', creator = User.objects.get(id=3))
+
+Trip.objects.create(destination = 'Cuzco, Peru', description = 'City tour', travel_startdate='2018-05-12', travel_enddate = '2018-05-28', creator = User.objects.get(id=1))
+
+Trip.objects.get(id=1).joiner.add(User.objects.get(id=2))
+Trip.objects.get(id=2).joiner.add(User.objects.get(id=2))
+Trip.objects.get(id=3).joiner.add(User.objects.get(id=2))
+Trip.objects.get(id=1).joiner.add(User.objects.get(id=1))
+Trip.objects.get(id=5).joiner.add(User.objects.get(id=3))
